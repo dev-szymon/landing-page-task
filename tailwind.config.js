@@ -7,15 +7,21 @@ export default {
     theme: {
         colors: {
             white: {DEFAULT: "#fff"},
-            black: {DEFAULT: "#000", dim: "#111010"},
+            black: {DEFAULT: "#000", dim: "#111010", secondary: "#1c1b1b"},
+            brown: {
+                DEFAULT: "#443B3B"
+            },
             gray: {
-                DEFAULT: "#d9d9d9"
+                DEFAULT: "#d9d9d9",
+                light: "#e8e8e8",
+                lighter: "#e5e5df",
+                dark: "#827d7d"
             },
             blue: {
-                dim: "#404F84"
+                dim: "#404f84"
             },
             lemon: {
-                DEFAULT: "#CAEA71"
+                DEFAULT: "#caea71"
             },
             purple: {
                 DEFAULT: "#844071"
@@ -23,7 +29,9 @@ export default {
         },
         spacing: {
             ...defaultTheme.spacing,
-            15.5: "62px"
+            15.5: "62px",
+            25: "100px",
+            leet: "1337px"
         }
     },
     plugins: [
@@ -31,6 +39,9 @@ export default {
             addUtilities({
                 ".bg-gradient-primary": {
                     "@apply bg-gradient-to-r from-lemon via-purple to-blue-dim": {}
+                },
+                ".tracking-07": {
+                    "@apply tracking-[0.07em]": {}
                 }
             });
         })
