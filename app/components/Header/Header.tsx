@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({className}) => {
                     ))}
                 </nav>
 
-                <LogoSvg className="text-brown w-12" />
+                <LogoSvg className="w-12 text-brown" />
 
                 <div className="flex flex-1 justify-end gap-5">
                     <HeaderButton>

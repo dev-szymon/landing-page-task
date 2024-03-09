@@ -14,7 +14,7 @@ const NavItem: React.FC<NavItemProps> = ({className, label, to}) => {
             to={to}
             className={({isActive}) =>
                 clsx(
-                    "tracking-07 flex h-10 min-w-25 items-center justify-center rounded-md border border-gray-dark px-5 text-sm uppercase",
+                    "font-secondary flex h-10 min-w-25 items-center justify-center rounded-md border border-gray-dark px-5 text-sm uppercase tracking-07",
                     isActive
                         ? "bg-gray-lighter font-semibold text-black-dim"
                         : "bg-gray text-black-secondary",
