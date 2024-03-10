@@ -20,7 +20,8 @@ export default {
                     tertiary: "#101215"
                 },
                 brown: {
-                    DEFAULT: "#443B3B"
+                    DEFAULT: "#443B3B",
+                    dark: "#41423e"
                 },
                 gray: {
                     DEFAULT: "#d9d9d9",
@@ -42,7 +43,9 @@ export default {
             },
             spacing: {
                 ...defaultTheme.spacing,
+                15: "60px",
                 15.5: "62px",
+                17.5: "70px",
                 25: "100px",
                 33: "132px",
                 leet: "1337px"

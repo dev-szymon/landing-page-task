@@ -7,7 +7,7 @@ export type VideoProps = {
     autoPlay: boolean;
 };
 const Video: React.FC<VideoProps> = ({className, autoPlay, source, type}) => {
-    const {videoplayerRef, handleTimeUpdate, handlePlay} = useVideoPlayer();
+    const {videoplayerRef, handleTimeUpdate, handlePlay, setIsPlaying} = useVideoPlayer();
 
     return (
         <video
@@ -18,6 +18,8 @@ const Video: React.FC<VideoProps> = ({className, autoPlay, source, type}) => {
             muted={true}
             onTimeUpdate={handleTimeUpdate}
             onEnded={handlePlay}
+            onPlaying={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
         >
             <source src={source} type={type} />
         </video>

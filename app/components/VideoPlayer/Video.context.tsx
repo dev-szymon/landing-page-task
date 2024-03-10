@@ -11,16 +11,22 @@ import {
 } from "react";
 
 type VideoContextValue = {
-    currentTime: number;
     isPlaying: boolean;
+    setIsPlaying: (val: boolean) => void;
+    videoplayerRef?: MutableRefObject<HTMLVideoElement | null>;
+
+    currentTime: number;
     handleTimeUpdate: ReactEventHandler<HTMLVideoElement>;
     handlePlay: () => void;
     handlePause: () => void;
-    videoplayerRef?: MutableRefObject<HTMLVideoElement | null>;
 };
 
 const VideoContext = createContext<VideoContextValue>({
     isPlaying: false,
+    setIsPlaying: () => {
+        return;
+    },
+
     currentTime: 0,
     handleTimeUpdate: () => {
         return;
@@ -36,6 +42,7 @@ const VideoContext = createContext<VideoContextValue>({
 const VideoContextProvider: React.FC<PropsWithChildren> = ({children}) => {
     const [currentTime, setCurrentTime] = useState<number>(0);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
+
     const videoplayerRef = useRef<HTMLVideoElement | null>(null);
     const {current: videoplayer} = videoplayerRef;
 
@@ -44,7 +51,6 @@ const VideoContextProvider: React.FC<PropsWithChildren> = ({children}) => {
             const next = Math.floor(event.currentTarget.currentTime);
             if (next !== currentTime) {
                 setCurrentTime(next);
-                setIsPlaying(true);
             }
         },
         [currentTime]
@@ -52,19 +58,19 @@ const VideoContextProvider: React.FC<PropsWithChildren> = ({children}) => {
 
     const handlePlay = useCallback((): void => {
         videoplayer?.play();
-        setIsPlaying(true);
     }, [videoplayer]);
 
     const handlePause = useCallback((): void => {
         videoplayer?.pause();
-        setIsPlaying(false);
     }, [videoplayer]);
 
     const videoContextValue: VideoContextValue = useMemo(() => {
         return {
-            currentTime,
             isPlaying,
+            setIsPlaying,
             videoplayerRef,
+
+            currentTime,
             handlePause,
             handlePlay,
             handleTimeUpdate
@@ -73,6 +79,7 @@ const VideoContextProvider: React.FC<PropsWithChildren> = ({children}) => {
 
     return <VideoContext.Provider value={videoContextValue}>{children}</VideoContext.Provider>;
 };
+
 export default VideoContextProvider;
 
 export const useVideoPlayer = (): VideoContextValue => {
