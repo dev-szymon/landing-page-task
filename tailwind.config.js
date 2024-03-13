@@ -14,22 +14,22 @@ export default {
                 white: {DEFAULT: "#fff", milk: "#ececec"},
                 black: {
                     DEFAULT: "#000",
+                    tertiary: "#101215",
                     dim: "#111010",
-                    light: "#252525",
                     secondary: "#1c1b1b",
-                    tertiary: "#101215"
+                    light: "#252525"
                 },
                 brown: {
                     DEFAULT: "#443B3B",
                     dark: "#41423e"
                 },
                 gray: {
-                    DEFAULT: "#d9d9d9",
-                    light: "#e8e8e8",
-                    lighter: "#e5e5df",
-                    lightest: "#c9c4c1",
                     darkish: "#888d8e",
-                    dark: "#827d7d"
+                    dark: "#827d7d",
+                    lightest: "#c9c4c1",
+                    lighter: "#e5e5df",
+                    DEFAULT: "#d9d9d9",
+                    light: "#e8e8e8"
                 },
                 blue: {
                     dim: "#404f84"

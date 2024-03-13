@@ -9,13 +9,18 @@ import {
     useRef,
     useState
 } from "react";
+import {noop} from "~/utils/noop";
 
 type VideoContextValue = {
     isPlaying: boolean;
     setIsPlaying: (val: boolean) => void;
     videoplayerRef?: MutableRefObject<HTMLVideoElement | null>;
-
+    progress: number;
+    isChangingProgress: boolean;
+    initProgressChange: () => void;
+    endProgressChange: () => void;
     currentTime: number;
+    handleProgressUpdate: (progress: number) => void;
     handleTimeUpdate: ReactEventHandler<HTMLVideoElement>;
     handlePlay: () => void;
     handlePause: () => void;
@@ -23,37 +28,39 @@ type VideoContextValue = {
 
 const VideoContext = createContext<VideoContextValue>({
     isPlaying: false,
-    setIsPlaying: () => {
-        return;
-    },
-
+    setIsPlaying: noop,
+    progress: 0,
     currentTime: 0,
-    handleTimeUpdate: () => {
-        return;
-    },
-    handlePlay: () => {
-        return;
-    },
-    handlePause: () => {
-        return;
-    }
+    isChangingProgress: false,
+    initProgressChange: noop,
+    handleProgressUpdate: noop,
+    endProgressChange: noop,
+    handleTimeUpdate: () => noop,
+    handlePlay: noop,
+    handlePause: noop
 });
 
 const VideoContextProvider: React.FC<PropsWithChildren> = ({children}) => {
     const [currentTime, setCurrentTime] = useState<number>(0);
+    const [progress, setProgress] = useState<number>(0);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
+    const [isChangingProgress, setIsChangingProgress] = useState<boolean>(false);
 
     const videoplayerRef = useRef<HTMLVideoElement | null>(null);
     const {current: videoplayer} = videoplayerRef;
 
     const handleTimeUpdate: ReactEventHandler<HTMLVideoElement> = useCallback(
         (event) => {
-            const next = Math.floor(event.currentTarget.currentTime);
-            if (next !== currentTime) {
-                setCurrentTime(next);
+            if (videoplayer) {
+                const next = event.currentTarget.currentTime;
+                if (next !== currentTime) {
+                    setIsPlaying(true);
+                    setProgress((videoplayer.currentTime / videoplayer.duration) * 100);
+                    setCurrentTime(next);
+                }
             }
         },
-        [currentTime]
+        [currentTime, videoplayer]
     );
 
     const handlePlay = useCallback((): void => {
@@ -64,18 +71,53 @@ const VideoContextProvider: React.FC<PropsWithChildren> = ({children}) => {
         videoplayer?.pause();
     }, [videoplayer]);
 
+    const initProgressChange = useCallback(() => {
+        setIsChangingProgress(true);
+        handlePause();
+    }, [handlePause]);
+
+    const handleProgressUpdate = useCallback(
+        (progress: number) => {
+            if (videoplayer) {
+                videoplayer.currentTime = (videoplayer.duration * progress) / 100;
+            }
+        },
+        [videoplayer]
+    );
+
+    const endProgressChange = useCallback(() => {
+        setIsChangingProgress(false);
+        handlePlay();
+    }, [handlePlay]);
+
     const videoContextValue: VideoContextValue = useMemo(() => {
         return {
+            videoplayerRef,
             isPlaying,
             setIsPlaying,
-            videoplayerRef,
-
-            currentTime,
             handlePause,
             handlePlay,
-            handleTimeUpdate
+            isChangingProgress,
+            initProgressChange,
+            endProgressChange,
+            currentTime,
+            handleTimeUpdate,
+            progress,
+            handleProgressUpdate
         };
-    }, [isPlaying, currentTime, handlePause, handlePlay, handleTimeUpdate, videoplayerRef]);
+    }, [
+        isPlaying,
+        currentTime,
+        handlePause,
+        progress,
+        handlePlay,
+        isChangingProgress,
+        initProgressChange,
+        endProgressChange,
+        handleTimeUpdate,
+        videoplayerRef,
+        handleProgressUpdate
+    ]);
 
     return <VideoContext.Provider value={videoContextValue}>{children}</VideoContext.Provider>;
 };
