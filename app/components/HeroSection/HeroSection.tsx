@@ -20,6 +20,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({className}) => {
                     type="video/mp4"
                     className="w-full object-cover object-center"
                     autoPlay={true}
+                    muted={true}
                 />
                 <div className="absolute z-20 flex h-full w-full max-w-leet flex-col justify-end gap-10 p-4 pb-[10%]">
                     <Badge text="LOREM IPSUM" className="text-white" />

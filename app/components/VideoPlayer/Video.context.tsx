@@ -12,32 +12,36 @@ import {
 import {noop} from "~/utils/noop";
 
 type VideoContextValue = {
+    videoplayerRef?: MutableRefObject<HTMLVideoElement | null>;
     isPlaying: boolean;
     setIsPlaying: (val: boolean) => void;
-    videoplayerRef?: MutableRefObject<HTMLVideoElement | null>;
+    handlePlay: () => void;
+    handlePause: () => void;
+
     progress: number;
     isChangingProgress: boolean;
     initProgressChange: () => void;
     endProgressChange: () => void;
-    currentTime: number;
     handleProgressUpdate: (progress: number) => void;
+
+    currentTime: number;
     handleTimeUpdate: ReactEventHandler<HTMLVideoElement>;
-    handlePlay: () => void;
-    handlePause: () => void;
 };
 
 const VideoContext = createContext<VideoContextValue>({
     isPlaying: false,
     setIsPlaying: noop,
+    handlePlay: noop,
+    handlePause: noop,
+
     progress: 0,
-    currentTime: 0,
     isChangingProgress: false,
     initProgressChange: noop,
-    handleProgressUpdate: noop,
     endProgressChange: noop,
-    handleTimeUpdate: () => noop,
-    handlePlay: noop,
-    handlePause: noop
+    handleProgressUpdate: noop,
+
+    currentTime: 0,
+    handleTimeUpdate: () => noop
 });
 
 const VideoContextProvider: React.FC<PropsWithChildren> = ({children}) => {
@@ -97,13 +101,13 @@ const VideoContextProvider: React.FC<PropsWithChildren> = ({children}) => {
             setIsPlaying,
             handlePause,
             handlePlay,
+            progress,
             isChangingProgress,
             initProgressChange,
             endProgressChange,
+            handleProgressUpdate,
             currentTime,
-            handleTimeUpdate,
-            progress,
-            handleProgressUpdate
+            handleTimeUpdate
         };
     }, [
         isPlaying,
