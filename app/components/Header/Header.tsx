@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({className}) => {
     return (
         <header
             className={clsx(
-                "sticky top-0 z-50 w-full border-b border-gray-dark bg-gray-light",
+                "border-brown-600 bg-gray-150 sticky top-0 z-50 w-full border-b",
                 className
             )}
         >

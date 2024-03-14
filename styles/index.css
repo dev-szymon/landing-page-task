@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 progress::-moz-progress-bar {
-    background-color: #caea71;
+    @apply bg-lemon-550;
 }
 
 progress::-webkit-progress-bar {
-    background-color: #252525;
+    @apply bg-black-800;
 }
 progress::-webkit-progress-value {
-    background: #caea71;
+    @apply bg-lemon-550;
 }
 
 progress {
-    background-color: #252525;
+    @apply bg-black-800;
 }

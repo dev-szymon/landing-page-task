@@ -11,7 +11,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({className}) => {
         <VideoContextProvider>
             <section
                 className={clsx(
-                    "relative flex h-[calc(100vh-108px)] w-full justify-center overflow-hidden after:absolute after:inset-0 after:z-10 after:bg-black after:bg-opacity-55 after:content-['']",
+                    "relative flex h-[calc(100vh-108px)] w-full justify-center overflow-hidden after:absolute after:inset-0 after:z-10 after:bg-black/55 after:content-['']",
                     className
                 )}
             >
@@ -23,7 +23,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({className}) => {
                 />
                 <div className="absolute z-20 flex h-full w-full max-w-leet flex-col justify-end gap-10 p-4 pb-[10%]">
                     <Badge text="LOREM IPSUM" className="text-white" />
-                    <h1 className="font-secondary text-[45px] font-semibold leading-[57px] -tracking-wider text-white-milk">
+                    <h1 className="font-secondary text-[45px] font-semibold leading-[57px] -tracking-wider text-gray-100">
                         <span className="block w-fit bg-clip-text text-transparent bg-gradient-primary">
                             Lorem Ipsum Dolor Sit amet
                         </span>

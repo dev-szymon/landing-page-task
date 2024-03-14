@@ -13,7 +13,7 @@ const Footer: React.FC<FooterProps> = ({className}) => {
                     <LogoSvg className="w-12 " />
                     <span className="font-secondary text-2xl font-semibold">Brand Name</span>
                 </div>
-                <p className="font-primary text-[11px] tracking-07">
+                <p className="font-primary text-[11px] text-brown-700 tracking-07">
                     © 2024 <strong className="font-bold">Brand Name</strong> All rights reserved.
                     Unauthorized use or copying of this brand is strictly prohibited. No part of
                     this website may be reproduced, distributed, or transmitted in any form or by

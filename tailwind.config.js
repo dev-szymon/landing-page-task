@@ -11,34 +11,41 @@ export default {
                 secondary: ["Exo", ...defaultTheme.fontFamily.sans]
             },
             colors: {
-                white: {DEFAULT: "#fff", milk: "#ececec"},
+                white: {DEFAULT: "#fff"},
                 black: {
                     DEFAULT: "#000",
-                    tertiary: "#101215",
-                    dim: "#111010",
-                    secondary: "#1c1b1b",
-                    light: "#252525"
+                    950: "#111010",
+                    900: "#101215",
+                    850: "#1c1b1b",
+                    800: "#252525",
+                    600: "#41423e",
+                    200: "#888d8e"
                 },
                 brown: {
                     DEFAULT: "#443B3B",
-                    dark: "#41423e"
+                    800: "#443b3b",
+                    700: "#5f5959",
+                    600: "#827d7d",
+                    500: "#c9c4c1"
                 },
                 gray: {
-                    darkish: "#888d8e",
-                    dark: "#827d7d",
-                    lightest: "#c9c4c1",
-                    lighter: "#e5e5df",
                     DEFAULT: "#d9d9d9",
-                    light: "#e8e8e8"
+                    250: "#d9d9d9",
+                    200: "#e5e5df",
+                    150: "#e8e8e8",
+                    100: "#ececec"
                 },
                 blue: {
-                    dim: "#404f84"
+                    DEFAULT: "#404f84"
                 },
                 lemon: {
-                    DEFAULT: "#caea71"
+                    DEFAULT: "#cae771",
+                    600: "#cae771",
+                    550: "#cae871"
                 },
                 purple: {
-                    DEFAULT: "#844071"
+                    DEFAULT: "#844071",
+                    600: "#844071"
                 }
             },
             spacing: {
@@ -56,7 +63,7 @@ export default {
         plugin(function ({addUtilities}) {
             addUtilities({
                 ".bg-gradient-primary": {
-                    "@apply bg-gradient-to-r from-lemon via-purple to-blue-dim": {}
+                    "@apply bg-gradient-to-r from-lemon via-purple to-blue": {}
                 },
                 ".tracking-07": {
                     "@apply tracking-[0.07em]": {}

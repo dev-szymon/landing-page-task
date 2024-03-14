@@ -12,9 +12,9 @@ const AdvertBar: React.FC<AdvertBarProps> = ({className}) => {
                 className
             )}
         >
-            <p className="w-full text-center font-primary text-sm uppercase text-black-dim tracking-07">
+            <p className="text-black-950 w-full text-center font-primary text-sm uppercase tracking-07">
                 {"NEW CUSTOMERS GET 15% OFF! USE CODE "}
-                <span className="text-blue-dim">WELCOME15</span>
+                <span className="text-blue">WELCOME15</span>
             </p>
         </div>
     );

@@ -32,7 +32,7 @@ const VideoControls: React.FC<VideoControlsProps> = ({className}) => {
             )}
         >
             <button
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gray-darkish bg-black-tertiary text-lemon"
+                className="bg-black-900 border-black-200 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border text-lemon"
                 onClick={isPlaying ? handlePause : handlePlay}
             >
                 {isPlaying ? <PauseSvg className="w-2" /> : <PlaySvg className="w-2" />}
@@ -64,7 +64,7 @@ const VideoControls: React.FC<VideoControlsProps> = ({className}) => {
                 Video Progress
             </progress>
             <div className="flex min-w-12 shrink-0 items-center justify-center">
-                <span className="font-secondary text-base font-bold text-gray-lightest">
+                <span className="text-brown-500 font-secondary text-base font-bold">
                     {`${displayDoubleDigits(Math.floor(currentTime / 60))}:${displayDoubleDigits(Math.floor(currentTime % 60))}`}
                 </span>
             </div>
