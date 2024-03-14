@@ -17,6 +17,9 @@ Run `yarn install` to install required dependencies.
 - `dev` - starts remix server and builds tailwind in watch mode in parallel
 - `lint` - lints project files 
 - `start` - starts remix server in production mode
+- `storybook:css` - builds tailwind in watch mode for storybook
+- `storybook:dev` - starts storybook
+- `storybook` - builds tailwind in watch mode and starts storybook
 - `test` - runs jest tests
 - `typecheck` - typechecks typescript files
 
@@ -28,6 +31,7 @@ Run `yarn install` in root directory and then run `yarn dev`.
 - `remix` - Remix is currently my prefrred choice to spin up a web project. It provides all the handy tools and I consider it simpler and more reliable compared to for example Nextjs.
 - `tailwindcss` - Provides very productive way of writing styles. It requires less context switching because you are able to write styles together with markup. I consider not having to come up with names for classes or styled components a huge factor to productivity. `prettier-plugin-tailwindcss` package keeps utility classes organised in predicted order.
 - `clsx` - A tiny library that makes extending classes easy.
+- `storybook` - Introduced simple storybook setup into the project. It provides great developer experience when it comes to project onboarding. Developers can immediately visually see components and work on them in isolated environments. It's possible to add snapshot testing or visual regression testing with tools like [Chromatic](https://www.chromatic.com/).
 
 ## Notable assumptions
 
