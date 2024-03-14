@@ -14,4 +14,9 @@ describe("displayDoubleDigit", () => {
             expect(displayDoubleDigits(given)).toBe(want);
         });
     });
+
+    test(`given: 102, expect: error`, () => {
+        const given = () => displayDoubleDigits(102);
+        expect(given).toThrowError();
+    });
 });
